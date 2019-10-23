@@ -13,5 +13,11 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <a href="index2.jsp">index 2</a>
+        <form action="index2.jsp">
+        <input type="text" name="teste" width="50px">
+        <input type="submit" name="submit" value="submit">
+        </form>
+        
     </body>
 </html>

@@ -16,13 +16,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 /**
  *
- * @author Win7
+ * @author tiago.lucas
  */
-public class Meu_filtro1 implements Filter{
+public class Meu_filtro2 implements Filter{
 
     private FilterConfig filterConfig = null;
     
@@ -38,29 +36,26 @@ public class Meu_filtro1 implements Filter{
         if (filterConfig==null){
             return ;
         }
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();       
         CharResponseWrapper wrapper = new CharResponseWrapper(
-                    (HttpServletResponse) response);
+        (HttpServletResponse) response);
         chain.doFilter(request, wrapper);
         
         CharArrayWriter caw = new CharArrayWriter();
         caw.write(
                 wrapper.toString().substring(
-                        0,
-                        wrapper.toString().indexOf("</body>") - 1));
-        caw.write(
-                "<a href='Meu_Projeto1'>Meu Projeto 122</a>");
+                        0, 
+                        wrapper.toString().indexOf("</body>")-1));
+        caw.write("<p>Olá mundo!</p>");
         caw.write("\n</body></html>");
-        response.setContentLength(caw.toString()
-                                     .getBytes().length);
+        response.setContentLength(caw.toString().getBytes().length);
         out.write(caw.toString());
         out.close();
     }
 
     @Override
     public void destroy() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        this.filterConfig = null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
